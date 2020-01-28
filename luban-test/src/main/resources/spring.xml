@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd"
+	   default-autowire="byType"
+	   >
+<!--		Luban中setXX()方法，其中参数为要注入的类型，如ZlService,这里XX要跟要注入的bean的名字相同，类如这里ZlService名字为zl，就是这里的XX-->
+<!--	   default-autowire="byName">-->
+<!--	   主要通过setXX方法，自动注入该方法中参数-->
+<!--       default-autowire="byType">-->
+<!--			主要通过有参构造方法注入参数实例，注意只有有参而没有无参会报错-->
+<!--        default-autowire="constructor">-->
+<!--	   自动装配模型 &#45;&#45;byType-->
+
+<!--	导入额外配置文件-->
+<!--	<import resource="server.xml"></import>-->
+
+<!--	配置bean的别名-->
+<!--	<alias name="luban" alias="lubanService"></alias>-->
+
+	<bean id="lubanService" class="com.luban.services.LubanService" >
+<!--	<bean id="luban" class="com.luban.services.LubanService" autowire="byName">-->
+<!--		 collaborators and configuration for this bean go here -->
+<!--		这里的name是根据LubanService中setXX这个XX相关，首字符可以小写-->
+<!--		<property name="xX">-->
+<!--			<ref bean="zl"></ref>-->
+<!--		</property>-->
+	</bean>
+
+	<bean id="zl" class="com.luban.services.ZlService">
+<!--		&lt;!&ndash; collaborators and configuration for this bean go here &ndash;&gt;-->
+	</bean>
+
+<!--	<bean id="zlService" class="com.luban.services.ZlService2">-->
+<!--		&lt;!&ndash;		&lt;!&ndash; collaborators and configuration for this bean go here &ndash;&gt;&ndash;&gt;-->
+<!--	</bean>-->
+
+	<bean id="myCallback" init-method="init" class="com.luban.callbacks.MyCallback"></bean>
+
+	<!-- more bean definitions go here -->
+
+</beans>
