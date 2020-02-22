@@ -63,7 +63,11 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * through {@link #register} calls and then manually {@linkplain #refresh refreshed}.
 	 */
 	public AnnotationConfigApplicationContext() {
+//		 解析带有@Configuration的类
+//		往bd map放了一些开天辟地的bd ,如 ConfigurationClassPostProcessor\AutowiredAnnotationBeanPostProcessor。。。
 		this.reader = new AnnotatedBeanDefinitionReader(this);
+//		 spring 提供api用来动态扫描注解
+//		 一般供拓展spring的时候用的
 		this.scanner = new ClassPathBeanDefinitionScanner(this);
 	}
 
@@ -84,10 +88,10 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * {@link Configuration @Configuration} classes
 	 */
 	public AnnotationConfigApplicationContext(Class<?>... componentClasses) {
-		// 调用构造方法
+//		 调用构造方法，实例化beanFactory
 		this();
-		// 注册配置类，因为配置需要解析，一般不需要自己扫描
-		// beanDefinitionMap.put("appconfig",bean) 就是将配置类产生的beanDefinition对象放到beanDefinitionMap,然后再实例化bean
+//		 注册配置类，因为配置需要解析，一般不需要自己扫描
+//		 beanDefinitionMap.put("appconfig",bean) 就是将配置类产生的beanDefinition对象放到beanDefinitionMap,然后再实例化bean
 //		DefaultListableBeanFactory.registerBeanDefinition
 //		this.beanDefinitionMap.put(beanName, beanDefinition);
 		register(componentClasses);

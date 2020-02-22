@@ -20,6 +20,7 @@
 <!--	<alias name="luban" alias="lubanService"></alias>-->
 
 	<bean id="lubanService" class="com.luban.services.LubanService" >
+<!--		<constructor-arg name="zl" ref="zlService"></constructor-arg>-->
 <!--	<bean id="luban" class="com.luban.services.LubanService" autowire="byName">-->
 <!--		 collaborators and configuration for this bean go here -->
 <!--		这里的name是根据LubanService中setXX这个XX相关，首字符可以小写-->
@@ -28,16 +29,17 @@
 <!--		</property>-->
 	</bean>
 
-	<bean id="zl" class="com.luban.services.ZlService">
+	<bean id="zl" class="com.luban.services.ZlService" primary="true" factory-method="xxx">
+<!--		<constructor-arg value="xxx" index="0" ref="lubanService" type="B"></constructor-arg>-->
 <!--		&lt;!&ndash; collaborators and configuration for this bean go here &ndash;&gt;-->
 	</bean>
 
-<!--	<bean id="zlService" class="com.luban.services.ZlService2">-->
+	<bean id="zlService" class="com.luban.services.ZlService2" autowire-candidate="true">
 <!--		&lt;!&ndash;		&lt;!&ndash; collaborators and configuration for this bean go here &ndash;&gt;&ndash;&gt;-->
-<!--	</bean>-->
+	</bean>
 
-	<bean id="myCallback" init-method="init" class="com.luban.callbacks.MyCallback"></bean>
-
+<!--	<bean id="myCallback" init-method="init" class="com.luban.callbacks.MyCallback"></bean>-->
+	<bean id="myFactoryBean" class="com.luban.factorybean.MyFactoryBean"></bean>
 	<!-- more bean definitions go here -->
 
 </beans>

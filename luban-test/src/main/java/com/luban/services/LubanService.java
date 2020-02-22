@@ -1,10 +1,11 @@
 package com.luban.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class LubanService {
 
 	//	@Autowired
@@ -13,9 +14,9 @@ public class LubanService {
 	//	LubanService(){
 //
 //	}
-	public LubanService(Zl zl) {
-		this.zlService1 = zl;
-	}
+//	public LubanService(Zl zl) {
+//		this.zlService1 = zl;
+//	}
 
 	public void xx() {
 		System.out.println(zlService1);
@@ -26,9 +27,9 @@ public class LubanService {
 //	}
 
 
-//	public void setZlService(Zl zlService) {
-//		this.zlService = zlService;
-//	}
+	public void setZlService(Zl zl) {
+		this.zlService1= zl;
+	}
 //	public void setXX(ZlService zlService11) {
 //		this.zlService1 = zlService11;
 //	}

@@ -3,7 +3,7 @@ package com.luban.config;
 import org.springframework.context.Lifecycle;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class MyLifecycle implements Lifecycle {
 
 	boolean flag =false;

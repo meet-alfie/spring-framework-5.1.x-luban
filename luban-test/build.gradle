@@ -12,10 +12,17 @@ repositories {
 }
 
 dependencies {
-    compile(project(":spring-context"))
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile(project(":spring-context"))
+//    compile(project(":spring-webmvc"))
+//    compile(project(":spring-jdbc"))
 //     mybatis-core
     compile group: 'org.mybatis', name:'mybatis', version:'3.5.0'
 //     源码 spring mybatis的插件包
     compile group:'org.mybatis', name: 'mybatis-spring', version:'2.0.0'
+
+//    compile group: 'mysql', name: 'mysql-connector-java', version:'6.0.6'
+
+//    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version:'8.0.1'
+
 }

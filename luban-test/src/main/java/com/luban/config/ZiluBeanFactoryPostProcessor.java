@@ -9,7 +9,13 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.stereotype.Component;
 
-@Component
+/*
+	这个类的执行时机：
+	在扫描和解析之后
+	invokeBeanFactoryPostProcessor哪里执行
+	遍历beandefinitionmap实例化beanf即finishBeanFactoryInitialization之前
+ */
+//@Component
 public class ZiluBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
