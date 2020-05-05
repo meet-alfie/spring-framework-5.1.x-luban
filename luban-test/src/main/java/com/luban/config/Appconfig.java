@@ -13,10 +13,27 @@ import org.springframework.context.annotation.*;
 //		,useDefaultFilters = false
 )
 //Invalid default: public abstract java.lang.Class org.mybatis.spring.annotation.MapperScan.factoryBean()
-@MapperScan("com.luban.mapper")
+//@MapperScan("com.luban.mapper")
 //@EnableAspectJAutoProxy
 //@ImportResource("classpath:spring.xml")
+@Configuration
 public class Appconfig {
+
+//	@Bean
+//	public E getE(){
+//		System.out.println("e init");
+//		return new E();
+//	}
+//
+//	//	先执行f,看f调用e的逻辑
+//	@Bean
+//	public F f(){
+//		System.out.println("f init");
+//		getE();
+//		return new F();
+//	}
+
+
 
 //	@Bean
 //	public ZlService zlService(){

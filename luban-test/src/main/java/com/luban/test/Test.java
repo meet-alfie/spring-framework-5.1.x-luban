@@ -4,6 +4,7 @@ import com.luban.annotation.LubanMapper;
 import com.luban.beanDefinition.LubanBeanFactoryPostProcessor;
 import com.luban.beanDefinition.MyScanner;
 import com.luban.config.Appconfig;
+import com.luban.config.E;
 import com.luban.factorybean.MyFactoryBean;
 import com.luban.invocation.MyInvocationHandler;
 import com.luban.mapper.UserDao;
@@ -17,6 +18,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.springframework.beans.factory.support.ChildBeanDefinition;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -30,15 +32,28 @@ public class Test {
 	public static void main(String[] args) {
 		//初始化spring容器
 //		1.javaConfig方式
-//		AnnotationConfigApplicationContext ac  =
-//				new AnnotationConfigApplicationContext(Appconfig.class);
-
-
- 		AnnotationConfigApplicationContext ac  =
+		AnnotationConfigApplicationContext ac  =
 				new AnnotationConfigApplicationContext();
 		ac.register(Appconfig.class);
-//		ac.addBeanFactoryPostProcessor(new LubanBeanFactoryPostProcessor());
+//		AnnotationConfigApplicationContext ac  =
+//				new AnnotationConfigApplicationContext(Appconfig.class);
+//		关闭循环依赖，注意要在ac初始化之前
+		DefaultListableBeanFactory defaultListableBeanFactory = (DefaultListableBeanFactory) ac.getBeanFactory();
+		defaultListableBeanFactory.setAllowCircularReferences(false);
 		ac.refresh();
+//		循环依赖
+		System.out.println(ac.getBean("productService"));
+
+//		cglib
+//		System.out.println(ac.getBean(Appconfig.class));
+//		System.out.println(ac.getBeanDefinition("getE").getClass());
+//		System.out.println(ac.getBeanDefinition("e").getClass());
+
+// 		AnnotationConfigApplicationContext ac  =
+//				new AnnotationConfigApplicationContext();
+//		ac.register(Appconfig.class);
+//		ac.addBeanFactoryPostProcessor(new LubanBeanFactoryPostProcessor());
+//		ac.refresh();
 //		ac.scan("com.luban");
 ////		ac.start();
 //		GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
