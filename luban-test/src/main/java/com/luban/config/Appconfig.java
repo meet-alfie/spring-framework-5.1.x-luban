@@ -7,7 +7,7 @@ import org.mybatis.spring.annotation.MapperScans;
 import org.springframework.context.annotation.*;
 
 //@Configuration
-@ComponentScan(value = "com.luban"
+@ComponentScan(value = "com.luban.circulardependency"
 //		,excludeFilters =
 		// 不使用默认的类扫描过滤器
 //		,useDefaultFilters = false

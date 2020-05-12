@@ -1,4 +1,4 @@
-package com.luban.services;
+package com.luban.circulardependency;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

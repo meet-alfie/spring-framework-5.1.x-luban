@@ -196,6 +196,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 	@Override
 	public Object getBean(String name) throws BeansException {
+//		空方法
 		return doGetBean(name, null, null, false);
 	}
 
@@ -238,11 +239,12 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	@SuppressWarnings("unchecked")
 	protected <T> T doGetBean(final String name, @Nullable final Class<T> requiredType,
 			@Nullable final Object[] args, boolean typeCheckOnly) throws BeansException {
-
+//		理解bean的名字是否非法---其它 例如名字前面带&，表示拿factorybean本身，否则取facotorybean的getObject()返回对象
 		final String beanName = transformedBeanName(name);
 		Object bean;
 
 		// Eagerly check singleton cache for manually registered singletons.
+//		从容器中拿一遍
 		Object sharedInstance = getSingleton(beanName);
 		if (sharedInstance != null && args == null) {
 			if (logger.isTraceEnabled()) {
@@ -254,6 +256,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					logger.trace("Returning cached instance of singleton bean '" + beanName + "'");
 				}
 			}
+//			检查下sharedInstance是否还有factorybean方法等
 			bean = getObjectForBeanInstance(sharedInstance, name, beanName, null);
 		}
 
@@ -317,6 +320,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				if (mbd.isSingleton()) {
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
+//							完成了目标对象的创建
+//							如果需要代理，还完成了代理
 							return createBean(beanName, mbd, args);
 						}
 						catch (BeansException ex) {

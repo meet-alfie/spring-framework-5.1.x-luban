@@ -32,17 +32,18 @@ public class Test {
 	public static void main(String[] args) {
 		//初始化spring容器
 //		1.javaConfig方式
-		AnnotationConfigApplicationContext ac  =
-				new AnnotationConfigApplicationContext();
-		ac.register(Appconfig.class);
 //		AnnotationConfigApplicationContext ac  =
-//				new AnnotationConfigApplicationContext(Appconfig.class);
+//				new AnnotationConfigApplicationContext();
+//		ac.register(Appconfig.class);
+		AnnotationConfigApplicationContext ac  =
+				new AnnotationConfigApplicationContext(Appconfig.class);
 //		关闭循环依赖，注意要在ac初始化之前
-		DefaultListableBeanFactory defaultListableBeanFactory = (DefaultListableBeanFactory) ac.getBeanFactory();
-		defaultListableBeanFactory.setAllowCircularReferences(false);
-		ac.refresh();
+//		DefaultListableBeanFactory defaultListableBeanFactory = (DefaultListableBeanFactory) ac.getBeanFactory();
+//		defaultListableBeanFactory.setAllowCircularReferences(false);
+//		ac.refresh();
 //		循环依赖
-		System.out.println(ac.getBean("productService"));
+		System.out.println(ac.getBean("orderService"));
+//		ac.getBeanFactory().registerSingleton("xx",new Object());
 
 //		cglib
 //		System.out.println(ac.getBean(Appconfig.class));
