@@ -197,6 +197,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	@Override
 	public Object getBean(String name) throws BeansException {
 //		空方法
+//		可以认为从这里开始bean的生命周期
 		return doGetBean(name, null, null, false);
 	}
 

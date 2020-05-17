@@ -1,8 +1,11 @@
 package com.luban.test;
 
 import com.luban.annotation.LubanMapper;
+import com.luban.aop.TargetClass;
 import com.luban.beanDefinition.LubanBeanFactoryPostProcessor;
 import com.luban.beanDefinition.MyScanner;
+import com.luban.circulardependency.I;
+import com.luban.circulardependency.OrderService;
 import com.luban.config.Appconfig;
 import com.luban.config.E;
 import com.luban.factorybean.MyFactoryBean;
@@ -29,7 +32,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
 public class Test {
-	public static void main(String[] args) {
+	public static void main(String[] args) { // ①
 		//初始化spring容器
 //		1.javaConfig方式
 //		AnnotationConfigApplicationContext ac  =
@@ -37,6 +40,23 @@ public class Test {
 //		ac.register(Appconfig.class);
 		AnnotationConfigApplicationContext ac  =
 				new AnnotationConfigApplicationContext(Appconfig.class);
+//		-------------aop---------------------
+//		ac.getBean(TargetClass.class).testAop();
+//		如果继承接口，然后用的this切点类型为接口，那么下面实现类获取不到，会报错
+//		ac.getBean(OrderService.class).testAop();
+//		ac.getBean(OrderService.class).tetstAopWithArgs("cc");
+
+//		ac.getBean(I.class).testAop();
+//		ac.getBean(I.class).tetstAopWithArgs("cc");
+
+//		默认jdk动态代理
+		I i = ac.getBean(I.class);
+		System.out.println(i);
+
+//		-------------aop---------------------
+
+
+
 //		关闭循环依赖，注意要在ac初始化之前
 //		DefaultListableBeanFactory defaultListableBeanFactory = (DefaultListableBeanFactory) ac.getBeanFactory();
 //		defaultListableBeanFactory.setAllowCircularReferences(false);

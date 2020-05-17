@@ -260,9 +260,15 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	 */
 	public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
 		List<BeanDefinitionHolder> configCandidates = new ArrayList<>();
+//		获取所有已经或者内置的bd
 		String[] candidateNames = registry.getBeanDefinitionNames();
 
 		for (String beanName : candidateNames) {
+//			根据名字 得到bd --- 为什么需要得到bd喃？这段代码的意义在哪里？
+//			联系上下文可以知道这里主要判断一个类是不是被解析了
+//			为什么需要判断一个类是否被解析，因为一个类其实是bd,如果被解析了就不解析了
+//			那么所谓的解析是解析什么？
+//			其实可以想一想如果你是spring的作者，代码执行到这里，你要干什么？
 			BeanDefinition beanDef = registry.getBeanDefinition(beanName);
 			if (ConfigurationClassUtils.isFullConfigurationClass(beanDef) ||
 					ConfigurationClassUtils.isLiteConfigurationClass(beanDef)) {

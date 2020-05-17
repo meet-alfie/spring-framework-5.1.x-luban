@@ -56,6 +56,7 @@ final class PostProcessorRegistrationDelegate {
 			ConfigurableListableBeanFactory beanFactory, List<BeanFactoryPostProcessor> beanFactoryPostProcessors) {
 
 		// Invoke BeanDefinitionRegistryPostProcessors first, if any.
+//		所有存在的BeanDefinitionRegistryPostProcessors的名字
 		Set<String> processedBeans = new HashSet<>();
 //		90%下面这种
 		if (beanFactory instanceof BeanDefinitionRegistry) {

@@ -88,13 +88,17 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * {@link Configuration @Configuration} classes
 	 */
 	public AnnotationConfigApplicationContext(Class<?>... componentClasses) {
-//		 调用构造方法，实例化beanFactory
+//		 调用构造方法，实例化beanFactory ②
 		this();
+//		setAllowCircularReferences(false);
 //		 注册配置类，因为配置需要解析，一般不需要自己扫描
-//		 beanDefinitionMap.put("appconfig",bean) 就是将配置类产生的beanDefinition对象放到beanDefinitionMap,然后再实例化bean
+//		 就是将配置类产生的beanDefinition对象放到beanDefinitionMap,然后再实例化bean
+//		 beanDefinitionMap.put("appconfig",bean)
 //		DefaultListableBeanFactory.registerBeanDefinition
 //		this.beanDefinitionMap.put(beanName, beanDefinition);
+//		③
 		register(componentClasses);
+//		④
 		refresh();
 	}
 
